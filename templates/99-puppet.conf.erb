@@ -1,0 +1,11 @@
+# Watch /var/log/puppet.log
+$ModLoad imfile   # Load the imfile input module
+$InputFileName /var/log/puppet.log
+$InputFileTag puppet-agent:
+$InputFileStateFile state-puppet-agent
+$InputRunFileMonitor
+# Send to our logstash server
+<% if not logstash_servers.empty? -%>
+<% logstash_ip = logstash_servers.last['ipaddress'] -%>
+*.* @@<%= logstash_ip -%>:<%= logstash_port -%>
+<% end %>
