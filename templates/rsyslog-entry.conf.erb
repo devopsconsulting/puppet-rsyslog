@@ -1,0 +1,6 @@
+# Watch <%= logfile %>
+$ModLoad imfile   # Load the imfile input module
+$InputFileName <%= logfile %>
+$InputFileTag <%= title %>:
+$InputFileStateFile state-<%= title %>
+$InputRunFileMonitor
