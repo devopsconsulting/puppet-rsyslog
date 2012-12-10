@@ -1,6 +1,7 @@
 class rsyslog::config($logstash_port, $logstash_server) {
     if $logstash_server {
         file {"logstash-endpoint":
+            path => "/etc/rsyslog.d/00-logstash-endpoint.conf",
             content => inline_template("*.* @@<%= logstash_server['ipaddress'] -%>:<%= logstash_port -%>"),
             ensure => 'file',
             owner => "root",
