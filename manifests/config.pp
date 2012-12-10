@@ -1,12 +1,12 @@
 class rsyslog::config($logstash_port, $logstash_server) {
     if $logstash_server {
         file {"logstash-endpoint":
-            content => template("*.* @@<%= logstash_server['ipaddress'] -%>:<%= logstash_port -%>"),
-            ensure => 'file'
+            content => inline_template("*.* @@<%= logstash_server['ipaddress'] -%>:<%= logstash_port -%>"),
+            ensure => 'file',
             owner => "root",
             group => "root",
             mode => "0644",
-            notify => Class["rsyslog::service"],
+            notify => Class["rsyslog::service"]
         }
     }
 
