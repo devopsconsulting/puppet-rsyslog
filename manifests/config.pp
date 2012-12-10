@@ -12,7 +12,7 @@ class rsyslog::config($logstash_port, $logstash_server) {
     }
 
     rsyslog::register{"puppet-agent":
-      logfile => '/var/log/puppet.conf',
+      logfile => '/var/log/puppet.log',
       order => '99'
     }
 }
